@@ -1,0 +1,128 @@
+import random
+import gzip
+import shutil
+
+#this will compress the file and then store it in a txt file or an array and/or store the file
+def main():
+    
+    print('do you want to store a file or read/change and existing one?')
+    print('please choose between store and edit ','\n')
+    print('WARNING: if you have not opened a txt file DO NOT select edit. it will crash the program!')
+    choice = input('')
+    
+    if choice == 'store':
+        print('Thank you! we shall now move onto the storage.','\n',' do you want to store digits, letters or a mix of both?')
+        print('please choose from either: \'digits\', \'letters\' or \'both\'. Thank you for cooperating.','\n')
+        storageType = input('')
+        
+        if storageType == 'digits':
+            print('First you need to tell what is going to be in your file!','\n')
+            print('remember, only digits!','\n')
+            store = int(input(''))
+            chocie = input('if you want, we can encrypt your code!!!')
+            text_file = open("digit_storage.txt",'w')
+            text_file.write(store)
+            text_file.close()
+            
+        elif storageType == 'letters':
+            print('First you need to tell what is going to be in your file!','\n')
+            print('remember, only letters!','\n')
+            store = input('')
+            text_file = open("letter_storage.txt",'w')
+            text_file.write(store)
+            text_file.close()
+            
+        elif storageType == 'both':
+            print('First you need to tell what is going to be in your file!','\n')
+            print('don\'t worry if you have letters and numbers! in this program it\'s all the same!','\n')
+            store = str(input(''))
+            text_file = open("both_storage.txt",'w')
+            text_file.write(store)
+            text_file.close()
+
+           
+    elif choice == 'edit':
+        end = False
+        #fucntion which will basically just let the user open a set file and then edit it.
+        #the 'edit' may just be nothing
+        store = str(input(''))
+        text_file = open("both_storage.txt",'r')
+        old = text_file.read()
+        print('This is currently what is in your file!','\n')
+        print(old,'\n')
+        text_file.close()
+        print('Do you want to add to it or add something in the beggining?','n',' if you wanted to rewrite the whole file you will have to choose the \'store\' choice')
+        while end == False:
+            print('so doe you want to','\n',' 1. append','\n','2. prepend','\n')
+            choice = input('')
+            if choice == 'append':
+                text_file = open("both_storage.txt",'a')
+                print('what will you append to your file?')
+                edit_store = input('')
+                text_file.write(edit_store)
+                text_file.close()
+                print('Thank you for working with us today!')
+                end = True
+                
+            elif choice == 'prepend':
+                text_file = open("both_storage.txt",'r')
+                old = text_file.read()
+                text_file.close()
+                text_file = open("both_storage.txt",'w')
+                print('what will you prepend to your file?')
+                edit_store = input('')
+                text_file.write(edit_store)
+                text_file.close()
+                text_file = open("both_storage.txt",'a')
+                text_file.write(old)
+                text_file.close()
+                print('Thank you for working with us today!')
+                end = True
+                
+            else:
+                print('*Ahem* thats not on the list of choices! try again. try copying the words exactly! no capitals or nothing!')
+                end = False
+            
+        
+
+def menu():
+    
+    menu = False
+    
+    print('..............................')
+    print('------------------------------')
+    print('==============================')
+    print('        welcome to the')
+    print('        STORAGE CENTRE')
+    print('==============================')
+    print('------------------------------')
+    print('..............................')
+    while menu == False:
+        
+        print('Do you want to start this program?','\n')
+        menuStart = input('')
+        
+        if menuStart == 'yes':
+            main()
+            menu = True
+        elif menuStart == 'y':
+            main()
+            menu = True
+            
+        elif menuStart == 'compress':
+            main()
+            menu = True
+            
+        elif menuStart == 'store':
+            main()
+            menu = True
+                 
+        elif menuStart == 'no':
+            print('Okay, bye...please come back later!!!')
+            menu == True
+        else:
+            menu = False
+menu()
+        
+        
+
